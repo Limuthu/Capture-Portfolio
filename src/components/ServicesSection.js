@@ -10,10 +10,13 @@ import home2 from '../img/home2.png';
 // Styles
 import {About,Description,Image} from "../styles"
 import styled from 'styled-components';
+import { useScroll } from './useScroll';
+import {scrollReveal} from '../animation';
 
 const ServicesSection = () => {
-return(
-    <Services>
+    const [element,controls ] = useScroll();
+    return(
+        <Services variants={scrollReveal} animate={controls} ref={element} initial="hidden">
         <Description>
             <h2>High <span>quality</span> services</h2>
 
@@ -51,8 +54,8 @@ return(
         <Image>
             <img src={home2} alt="camera" />
         </Image>
-    </Services>
-)
+        </Services>
+    )
 };
 
 const Services = styled(About)`
